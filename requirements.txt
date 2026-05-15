@@ -1,0 +1,13 @@
+langgraph>=1.0
+deepagents
+langchain-openai
+watchdog
+gitpython
+qdrant-client
+duckdb
+sentence-transformers
+pydantic>=2.0
+streamlit
+python-dotenv
+mcp
+openai
