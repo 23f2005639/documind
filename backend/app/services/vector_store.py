@@ -38,10 +38,11 @@ class VectorStore:
         if self.client is None:
             logger.info("Connecting to Qdrant Cloud")
             self.client = QdrantClient(
-                url=settings.qdrant_url,
-                api_key=settings.qdrant_api_key,
-                timeout=60
-            )
+    url=settings.qdrant_url,
+    api_key=settings.qdrant_api_key,
+    prefer_grpc=False,
+    timeout=60,
+)
             logger.info("Connected to Qdrant Cloud")
     
     async def initialize_collection(self):
