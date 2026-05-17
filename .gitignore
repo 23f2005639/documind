@@ -96,3 +96,4 @@ repos/
 cache/
 
 # Made with Bob
+.env
