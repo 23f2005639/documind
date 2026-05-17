@@ -1,0 +1,15 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - heading "DocuMind" [level=1] [ref=e8]
+      - paragraph [ref=e9]: Ask questions about your codebase
+    - button "Clear Chat" [ref=e10]
+  - generic [ref=e13]:
+    - img [ref=e15]
+    - heading "Ask me anything about your codebase" [level=3] [ref=e20]
+    - paragraph [ref=e21]: I can help you understand code, find documentation, and answer technical questions.
+  - generic [ref=e23]:
+    - textbox "Ask a question about your codebase..." [ref=e24]
+    - button "Send" [disabled] [ref=e25]:
+      - img [ref=e26]
+      - generic [ref=e29]: Send

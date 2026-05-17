@@ -1,0 +1,25 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - heading "DocuMind" [level=1] [ref=e8]
+      - paragraph [ref=e9]: Ask questions about your codebase
+    - button "Clear Chat" [ref=e10]
+  - generic [ref=e12]:
+    - generic [ref=e31]:
+      - paragraph [ref=e33]: What does this project do? Give me a quick summary.
+      - generic [ref=e34]: 12:39:13 PM
+    - generic [ref=e36]:
+      - generic [ref=e38]:
+        - generic [ref=e40]: "Confidence: 0%"
+        - generic [ref=e41]:
+          - button "Helpful" [ref=e42]:
+            - img [ref=e43]
+          - button "Not helpful" [ref=e45]:
+            - img [ref=e46]
+      - generic [ref=e48]: 12:39:14 PM
+  - paragraph [ref=e50]: No relevant sources found
+  - generic [ref=e23]:
+    - textbox "Ask a question about your codebase..." [ref=e24]
+    - button "Send" [disabled] [ref=e25]:
+      - img [ref=e26]
+      - generic [ref=e29]: Send
