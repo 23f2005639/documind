@@ -14,8 +14,8 @@ class Settings(BaseSettings):
     # =========================
     # Supabase
     # =========================
-    supabase_url: str
-    supabase_key: str
+    supabase_url: str = ""
+    supabase_key: str = ""
 
     # =========================
     # Security
@@ -50,6 +50,7 @@ class Settings(BaseSettings):
     qdrant_url: str | None = None
     qdrant_api_key: str | None = None
     qdrant_collection_name: str = "documind-vectors"
+    qdrant_local_path: str = "./qdrant_storage"
 
     # =========================
     # LLM
@@ -59,7 +60,7 @@ class Settings(BaseSettings):
 
     ollama_api_key: str | None = None
     ollama_base_url: str = "http://localhost:11434"
-    ollama_model: str = "llama3"
+    ollama_model: str = "gemma4:31b-cloud"
 
     # =========================
     # Notion

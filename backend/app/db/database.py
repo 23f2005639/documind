@@ -1,6 +1,9 @@
 """Supabase database client initialization"""
 
-from supabase import create_client, Client
 from app.config import settings
 
-supabase: Client = create_client(settings.supabase_url, settings.supabase_key)
+supabase = None
+
+if settings.supabase_url and settings.supabase_key:
+    from supabase import create_client
+    supabase = create_client(settings.supabase_url, settings.supabase_key)

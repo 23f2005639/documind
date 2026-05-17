@@ -71,14 +71,11 @@ class LLMService:
         self.cache: Dict[str, Dict[str, Any]] = {}
         self.cache_ttl = 24 * 60 * 60  # 24 hours
         
-        # HTTP client
-        self.client = httpx.AsyncClient(
-            timeout=60.0,
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json"
-            }
-        )
+        # HTTP client — no auth needed for local Ollama
+        headers = {"Content-Type": "application/json"}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {self.api_key}"
+        self.client = httpx.AsyncClient(timeout=120.0, headers=headers)
         
         logger.info(
             "LLM Service initialized",

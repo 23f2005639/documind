@@ -53,24 +53,16 @@ async def generate_streaming_response(query: Query) -> AsyncGenerator[str, None]
         ]
         yield f"data: {json.dumps({'type': 'sources', 'data': sources_data})}\n\n"
         
-        if not sources:
-            yield f"data: {json.dumps({'type': 'error', 'message': 'No relevant sources found'})}\n\n"
-            yield f"data: {json.dumps({'type': 'done'})}\n\n"
-            return
-        
         # Step 2: Generate answer
         yield f"data: {json.dumps({'type': 'status', 'message': 'Generating answer...'})}\n\n"
-        
-        # Build context
-        context_parts = []
-        for idx, source in enumerate(sources[:5], 1):
-            source_text = f"\n--- Source {idx} ---\n{source.content[:500]}\n"
-            context_parts.append(source_text)
-        
-        context = "\n".join(context_parts)
-        
-        # Build prompt
-        prompt = f"""Based on the following context, answer the question.
+
+        if sources:
+            context_parts = []
+            for idx, source in enumerate(sources[:5], 1):
+                source_text = f"\n--- Source {idx} ---\n{source.content[:500]}\n"
+                context_parts.append(source_text)
+            context = "\n".join(context_parts)
+            prompt = f"""Based on the following context from the codebase, answer the question.
 
 Context:
 {context}
@@ -78,6 +70,10 @@ Context:
 Question: {query.question}
 
 Provide a clear, accurate answer based on the context above."""
+        else:
+            prompt = f"""The user asked: {query.question}
+
+No indexed documents were found in the knowledge base yet. Let the user know the collection is empty and they need to index their codebase first. Be helpful and explain what DocuMind does and how to get started."""
         
         # Stream LLM response
         answer_chunks = []

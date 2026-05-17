@@ -34,16 +34,20 @@ class VectorStore:
         logger.info("Initializing vector store", collection=self.collection_name)
     
     def _connect(self):
-        """Lazy connect to Qdrant Cloud"""
+        """Lazy connect to Qdrant (local disk or cloud)"""
         if self.client is None:
-            logger.info("Connecting to Qdrant Cloud")
-            self.client = QdrantClient(
-    url=settings.qdrant_url,
-    api_key=settings.qdrant_api_key,
-    prefer_grpc=False,
-    timeout=60,
-)
-            logger.info("Connected to Qdrant Cloud")
+            if settings.qdrant_url:
+                logger.info("Connecting to Qdrant Cloud", url=settings.qdrant_url)
+                self.client = QdrantClient(
+                    url=settings.qdrant_url,
+                    api_key=settings.qdrant_api_key,
+                    prefer_grpc=False,
+                    timeout=60,
+                )
+            else:
+                logger.info("Using local Qdrant storage", path=settings.qdrant_local_path)
+                self.client = QdrantClient(path=settings.qdrant_local_path)
+            logger.info("Qdrant connected")
     
     async def initialize_collection(self):
         """Initialize the vector collection if it doesn't exist"""
